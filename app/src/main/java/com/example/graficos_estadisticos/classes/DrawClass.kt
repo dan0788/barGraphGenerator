@@ -3,24 +3,24 @@ package com.example.graficos_estadisticos.classes
 import com.echo.holographlibrary.Bar
 import com.example.graficos_estadisticos.interfaces.DrawInterface
 import android.graphics.Color
-import android.widget.EditText
-import com.example.graficos_estadisticos.databinding.ActivityMainBinding
 import java.util.Random
+import android.util.Log
 
-class Draw : DrawInterface {
+class DrawClass : DrawInterface {
 
-    override fun graficarBarras(puntos: ArrayList<Bar>, binding: ActivityMainBinding) : ArrayList<Bar>?{
+    override fun graficarBarras(puntos: ArrayList<Bar>, attribute: String, quantity: String) : Boolean{
         try{
             val barra = Bar()
             var color = generarColorHexAleatorio()
             barra.color = Color.parseColor(color)
-            barra.name = binding.editAttribute.text.toString()
-            barra.value = binding.editCuantity.text.toString().toFloat()
+            barra.name = attribute
+            barra.value = quantity.toFloat()
             puntos.add(barra)
 
-            return puntos
+            return true
         }catch(e: NumberFormatException){
-            return null
+            Log.e("Draw", "Error al convertir la cantidad '$quantity' a Float: ${e.message}", e)
+            return false
         }
     }
 

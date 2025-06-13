@@ -4,6 +4,6 @@ import com.echo.holographlibrary.Bar
 import com.example.graficos_estadisticos.databinding.ActivityMainBinding
 
 interface DrawInterface {
-    fun graficarBarras(puntos: ArrayList<Bar>, binding: ActivityMainBinding) : ArrayList<Bar>?
+    fun graficarBarras(puntos: ArrayList<Bar>, attribute: String, quantity: String) : Boolean
     fun generarColorHexAleatorio() : String
 }
